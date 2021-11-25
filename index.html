@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>GEP - RO</title>
+    <link rel="stylesheet" href="css/tableSetUp.css">
+</head>
+
+<body>
+    <center>
+        <br>
+        <h1>GEP RO</h1>
+        <br>
+
+        <div id="tableSetUp" class="alert alert-secondary col-10" role="alert">
+            <h2>Settaggi della tabella</h2>
+            <br>
+            <div style="display:block;" id="inputChoice" class="container">
+                <div class="row">
+                    <div class="col">
+                        <input type="button" id="inputChoiceCsv" style="font-size: 18px;" class="col-6 btn btn-primary"
+                            value=".csv" onclick="toggleShow('csv'); hide('randomChoice')">
+                    </div>
+                    <div class="col">
+                        <input type="button" id="inputChoiceRandom" style="font-size: 18px;"
+                            class="col-6 btn btn-primary" value="generate randomicamente"
+                            onclick="toggleShow('randomChoice'); hide('csv')">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div style="display:none;" id="randomChoice" class="container">
+                <div class="row">
+                    <div class="col">
+                        Numero di colonne:
+                    </div>
+                    <div class="col">
+                        Numero di righe:
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input id="numOfCol" class="form-control" type="number" min="1" value="1">
+                    </div>
+                    <div class="col">
+                        <input id="numOfRow" class="form-control" type="number" min="1" value="1">
+                    </div>
+                </div>
+            </div>
+            <div style="display:none;" id="csv" class="container">
+                <div class="mb-3">
+                    <label for="csvFileUpload" class="form-label">File CSV</label><br>
+
+                    <input class="form-control" type="file" id="csvFileUpload" name="csvFileUpload"
+                        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                </div>
+                <inptu type="button" id="csvFileUploadButton" class="btn btn-primary" onclick="uploadCsv()">carica file
+                </inptu>
+            </div>
+        </div>
+    </center>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>
