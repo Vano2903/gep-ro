@@ -47,13 +47,25 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <input id="numOfCol" class="form-control" type="number" min="1" value="1">
+                        <input id="numOfCol" class="form-control" type="number" min="1" value="4">
                     </div>
                     <div class="col">
-                        <input id="numOfRow" class="form-control" type="number" min="1" value="1">
+                        <input id="numOfRow" class="form-control" type="number" min="1" value="4">
                     </div>
                 </div>
+                <!-- <input type="checkbox" id="randomValues" class="form-control">Valori Casuali?</input> -->
+                <div class="form-check" style="text-align: left;">
+                    <input class="form-check-input" type="checkbox" value="" id="randomValues">
+                    <label class="form-check-label" for="randomValues">
+                        Valori Casuali?
+                    </label>
+                </div>
+
+                <input class="btn btn-primary"
+                    onclick="generateTable(document.getElementById('numOfCol').value, document.getElementById('numOfRow').value)"
+                    value="Crea La Tabella">
             </div>
+
             <div style="display:none;" id="csv" class="container">
                 <div class="mb-3">
                     <label for="csvFileUpload" class="form-label">File CSV</label><br>
@@ -61,9 +73,15 @@
                     <input class="form-control" type="file" id="csvFileUpload" name="csvFileUpload"
                         accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                 </div>
-                <inptu type="button" id="csvFileUploadButton" class="btn btn-primary" onclick="uploadCsv()">carica file
-                </inptu>
+                <input type="button" id="csvFileUploadButton" class="btn btn-primary" onclick="uploadCsv()">carica
+                file
+                </input>
             </div>
+            <br>
+        </div>
+
+        <div id="tableContainer">
+
         </div>
     </center>
 
@@ -71,6 +89,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/table.js"></script>
 </body>
 
 </html>
