@@ -23,7 +23,7 @@ function generateTable(cols, rows) {
         if (i == 0) {
             cell.innerHTML = "#";
         } else {
-            cell.innerHTML = "D " + (i);
+            cell.innerHTML = "D" + (i);
         }
         row.appendChild(cell);
         thead.appendChild(row);
@@ -64,6 +64,26 @@ function generateTable(cols, rows) {
         //add the row to the table
         tbody.appendChild(row);
     }
+
+    var row = document.createElement("tr");
+    for (var c = 0; c < cols + 2; c++) {
+        var cell = document.createElement("td");
+        cell.setAttribute("scope", "col");
+        if (c == 0) {
+            cell.innerHTML = "Totali";
+            cell.setAttribute("scope", "col")
+        } else {
+            cell.innerHTML = "";
+            cell.setAttribute("scope", "col")
+        }
+        row.appendChild(cell);
+    }
+    tbody.appendChild(row);
     table.appendChild(tbody);
     document.getElementById("tableContainer").replaceChild(table, document.getElementById("tableContainer").childNodes[0]);
+}
+
+function randomNumbers(cols, rows) {
+    //min = $("#slider-range").slider("values",0);
+    //max = $("#slider-range").slider("values",1);
 }

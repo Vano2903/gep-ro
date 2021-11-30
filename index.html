@@ -9,6 +9,13 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script> -->
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
     <title>GEP - RO</title>
     <link rel="stylesheet" href="css/tableSetUp.css">
 </head>
@@ -39,10 +46,10 @@
             <div style="display:none;" id="randomChoice" class="container">
                 <div class="row">
                     <div class="col">
-                        Numero di colonne:
+                        Numero di Destinazioni:
                     </div>
                     <div class="col">
-                        Numero di righe:
+                        Numero di Unitá Produttive:
                     </div>
                 </div>
                 <div class="row">
@@ -55,10 +62,20 @@
                 </div>
                 <!-- <input type="checkbox" id="randomValues" class="form-control">Valori Casuali?</input> -->
                 <div class="form-check" style="text-align: left;">
-                    <input class="form-check-input" type="checkbox" value="" id="randomValues">
+                    <input class="form-check-input" type="checkbox" value="" id="randomValues"
+                        onclick="toggleShow('randomChoiceRange')">
                     <label class="form-check-label" for="randomValues">
                         Valori Casuali?
                     </label>
+                    <br><br>
+                    <div style="display: none;" id="randomChoiceRange">
+                        <label for="amount">Range Randomici:</label>
+                        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        <br><br>
+                        <div id="slider-range"></div>
+                    </div>
+                    <br><br>
+
                 </div>
 
                 <input class="btn btn-primary"
@@ -90,6 +107,22 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/table.js"></script>
+
+    <script>
+        $(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 100,
+                max: 500,
+                values: [200, 400],
+                slide: function (event, ui) {
+                    $("#amount").val(ui.values[0] + " - " + ui.values[1]);
+                }
+            });
+            $("#amount").val($("#slider-range").slider("values", 0) +
+                " - " + $("#slider-range").slider("values", 1));
+        });
+    </script>
 </body>
 
 </html>
