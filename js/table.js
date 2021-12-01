@@ -109,10 +109,29 @@ function randomNumbers(cols, rows) {
         if (c == cols) {
             var remove = total - final;
             var cella = rand + remove;
+
+            if (cella < 0) {
+                var sumOfTotals = 0;
+                var lastNode = document.getElementById("cell" + (rows - 1) + "" + (cols + 1));
+                if (rows > 1) {
+                    for (var r = 0; r < rows - 1; r++) {
+                        var cell = document.getElementById("cell" + r + "" + (cols + 1));
+                        sumOfTotals += parseInt(cell.innerHTML);
+                    }
+                    lastNode.innerHTML = final - sumOfTotals;
+                } else {
+                    var cell = document.getElementById("cell" + (rows - 1) + "" + (cols + 1)).innerHTML = final;
+                }
+                cella = 100;
+                document.getElementById("cell" + parseInt(rows + 1).toString() + "" + parseInt(cols + 1).toString()).innerHTML = final;
+                return;
+            }
+
             document.getElementById("cell" + (rows + 1) + "" + (c)).innerHTML = cella; //base + (total - final)
         } else {
             rand = Math.floor(Math.random() * (50));
             final += base + rand;
+            // console.log("cella numbero: ", c, " cell" + (rows + 1) + "" + (c + 1))
             document.getElementById("cell" + (rows + 1) + "" + (c + 1)).innerHTML = base + rand;
             rand = base + rand;
         }
