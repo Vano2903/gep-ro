@@ -55,7 +55,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <input id="numOfCol" class="form-control" type="number" min="1" value="6">
+                        <input id="numOfCol" class="form-control" type="number" min="1" value="2">
                     </div>
                     <div class="col">
                         <input id="numOfRow" class="form-control" type="number" min="1" value="2">
@@ -82,7 +82,7 @@
                 <input class="btn btn-primary"
                     onclick="generateTable(document.getElementById('numOfCol').value, document.getElementById('numOfRow').value)"
                     value="Crea La Tabella">
-                <br>
+                <!-- <br> -->
                 <input id="start" disabled class="btn btn-primary" onclick="start()" value="Esegui gli Algoritmi">
             </div>
 
@@ -148,6 +148,7 @@
         async function start() {
             console.clear();
             nordovest();
+            minCost();
             // await Promise.all([nordovest(), ciao()]);
 
         }
