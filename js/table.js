@@ -18,7 +18,6 @@ function generateTable(cols, rows) {
 
     for (var i = 0; i < cols + 1; i++) {
         var cell = document.createElement("td");
-
         cell.setAttribute("scope", "col")
         if (i == 0) {
             cell.innerHTML = "#";
@@ -69,21 +68,54 @@ function generateTable(cols, rows) {
     for (var c = 0; c < cols + 2; c++) {
         var cell = document.createElement("td");
         cell.setAttribute("scope", "col");
+        cell.setAttribute("id", "cell" + parseInt(rows + 1).toString() + "" + c);
         if (c == 0) {
             cell.innerHTML = "Totali";
-            cell.setAttribute("scope", "col")
         } else {
             cell.innerHTML = "";
-            cell.setAttribute("scope", "col")
         }
         row.appendChild(cell);
     }
     tbody.appendChild(row);
     table.appendChild(tbody);
     document.getElementById("tableContainer").replaceChild(table, document.getElementById("tableContainer").childNodes[0]);
+
+    if (document.getElementById("randomValues").checked) {
+        randomNumbers(cols, rows);
+    }
 }
 
 function randomNumbers(cols, rows) {
-    //min = $("#slider-range").slider("values",0);
-    //max = $("#slider-range").slider("values",1);
+    var min = $("#slider-range").slider("values", 0);
+    var max = $("#slider-range").slider("values", 1);
+
+    var total = 0;
+    for (var c = 1; c < cols + 2; c++) {
+        for (var r = 0; r < rows; r++) {
+            var cell = document.getElementById("cell" + r + "" + c);
+            var number = Math.floor(Math.random() * (max - min + 1)) + min;
+            var number = number - (number % 5);
+            cell.innerHTML = number;
+            if (c == cols + 1) {
+                total += number;
+            }
+        }
+    }
+
+    var final = 0;
+    var base = Math.floor(total / parseInt(cols));
+    var rand;
+    for (var c = 0; c < cols + 1; c++) {
+        if (c == cols) {
+            var remove = total - final;
+            var cella = rand + remove;
+            document.getElementById("cell" + (rows + 1) + "" + (c)).innerHTML = cella; //base + (total - final)
+        } else {
+            rand = Math.floor(Math.random() * (50));
+            final += base + rand;
+            document.getElementById("cell" + (rows + 1) + "" + (c + 1)).innerHTML = base + rand;
+            rand = base + rand;
+        }
+    }
+    document.getElementById("cell" + parseInt(rows + 1).toString() + "" + parseInt(cols + 1).toString()).innerHTML = total;
 }
