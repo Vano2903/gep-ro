@@ -73,6 +73,7 @@ function generateTable(cols, rows) {
             cell.innerHTML = "Totali";
         } else {
             cell.innerHTML = "";
+            cell.setAttribute("contenteditable", "true");
         }
         row.appendChild(cell);
     }
@@ -137,4 +138,19 @@ function randomNumbers(cols, rows) {
         }
     }
     document.getElementById("cell" + parseInt(rows + 1).toString() + "" + parseInt(cols + 1).toString()).innerHTML = total;
+}
+
+function getTableData() {
+    var table = document.getElementById("table");
+    var rows = table.rows.length;
+    var cols = table.rows[0].cells.length;
+    var data = [];
+    for (var r = 1; r < rows; r++) {
+        var row = [];
+        for (var c = 1; c < cols; c++) {
+            row.push(table.rows[r].cells[c].innerHTML);
+        }
+        data.push(row);
+    }
+    return data;
 }
