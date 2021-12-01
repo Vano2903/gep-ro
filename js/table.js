@@ -46,10 +46,11 @@ function generateTable(cols, rows) {
             cell.setAttribute("scope", "col");
             if (c == 0) {
                 cell.innerHTML = "UP" + parseInt(r + 1).toString();
-            } else if (c == cols + 1) {
-                cell.setAttribute("id", "cell" + r + "" + c);
-                cell.setAttribute("class", "cell");
-                cell.innerHTML = "";
+                // } else if (c == cols + 1) {
+                //     cell.setAttribute("id", "cell" + r + "" + c);
+                //     cell.setAttribute("class", "cell");
+                //     cell.setAttribute("contenteditable", "true");
+                //     cell.innerHTML = "";
             }
             else {
                 cell.setAttribute("id", "cell" + r + "" + c);
@@ -84,6 +85,8 @@ function generateTable(cols, rows) {
     if (document.getElementById("randomValues").checked) {
         randomNumbers(cols, rows);
     }
+
+    document.getElementById("start").disabled = false;
 }
 
 function randomNumbers(cols, rows) {
@@ -153,4 +156,65 @@ function getTableData() {
         data.push(row);
     }
     return data;
+}
+
+function printFinalReview(algo, finalReview) {
+    document.getElementById("reviewContainer").style.display = "block";
+    var table = document.getElementById("reviewTable-" + algo);
+    table.innerHTML = "";
+    var row = document.createElement("tr");
+
+    var cell = document.createElement("td");
+    cell.innerHTML = "Quantitá";
+    row.appendChild(cell);
+
+    var cell = document.createElement("td");
+    cell.innerHTML = "Movimento da => a";
+    row.appendChild(cell);
+
+    var cell = document.createElement("td");
+    cell.innerHTML = "Costo";
+    row.appendChild(cell);
+
+    table.appendChild(row);
+
+    var finalCost = 0;
+    var finalQuantity = 0;
+    finalReview.forEach(function (key, element) {
+        var row = document.createElement("tr");
+
+        var cell = document.createElement("td");
+        cell.innerHTML = key.quantity;
+        finalQuantity += parseInt(key.quantity);
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        cell.innerHTML = key.movement;
+        row.appendChild(cell);
+
+        var cell = document.createElement("td");
+        cell.innerHTML = key.cost;
+        finalCost += parseInt(key.cost);
+        row.appendChild(cell);
+
+        table.appendChild(row);
+    }
+    );
+
+    var row = document.createElement("tr");
+    var cell = document.createElement("td");
+    cell.innerHTML = finalQuantity;
+    row.appendChild(cell);
+
+    var cell = document.createElement("td");
+    cell.innerHTML = "";
+    row.appendChild(cell);
+
+    var cell = document.createElement("td");
+    cell.innerHTML = finalCost;
+    row.appendChild(cell);
+
+    table.appendChild(row);
+
+
 }

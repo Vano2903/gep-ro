@@ -82,6 +82,8 @@
                 <input class="btn btn-primary"
                     onclick="generateTable(document.getElementById('numOfCol').value, document.getElementById('numOfRow').value)"
                     value="Crea La Tabella">
+                <br>
+                <input id="start" disabled class="btn btn-primary" onclick="start()" value="Esegui gli Algoritmi">
             </div>
 
             <div style="display:none;" id="csv" class="container">
@@ -101,6 +103,20 @@
         <div class="col-10" id="tableContainer">
 
         </div>
+
+        <br><br>
+        <div style="display:none;" class="col-10" id="reviewContainer">
+            <h3>NORD-OVEST</h3>
+            <table class="table table-striped table-bordered" id="reviewTable-NoOv">
+            </table>
+            <br><br>
+            <h3>MINIMI COSTI</h3>
+            <table class="table table-striped table-bordered" id="reviewTable-minCost">
+            </table>
+            <!-- <br><br>
+            <table class="table table-striped table-bordered" id="reviewTable">
+            </table> -->
+        </div>
     </center>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -109,6 +125,7 @@
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/table.js"></script>
     <script type="text/javascript" src="js/nordovest.js"></script>
+    <script type="text/javascript" src="js/minCost.js"></script>
     <script>
         $(function () {
             $("#slider-range").slider({
@@ -123,6 +140,17 @@
             $("#amount").val($("#slider-range").slider("values", 0) +
                 " - " + $("#slider-range").slider("values", 1));
         });
+
+        function ciao() {
+            console.log("ciao");
+        }
+
+        async function start() {
+            console.clear();
+            nordovest();
+            // await Promise.all([nordovest(), ciao()]);
+
+        }
     </script>
 </body>
 
